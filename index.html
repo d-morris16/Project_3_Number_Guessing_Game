@@ -17,10 +17,10 @@
 				<div>
 					<label for="numericInput" class="form-label">Input numeric guess</label>
 					<input type="number" class="form-control" id="numericInput" aria-describedby="emailHelp">
-					<div id="emailHelp" class="form-text">TEST INPUT</div>
+					<div id="feedback" class="form-text">TEST</div>
 					<p id="computerNum"></p>
 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" onsubmit="guessComparison(x,rndNum)" id="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 

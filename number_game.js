@@ -17,20 +17,26 @@ Step 6: Create a function that will loop for 3 iterations indicating the current
 
 
 let rndNum = getRndNumber(1,101);
+let x = document.getElementById("numericInput").value;
 
 function getRndNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 document.getElementById("computerNum").innerHTML = rndNum;
+document.getElementById("submit").addEventListener("click", function(event){
+		event.preventDefault()
+	});
 
 function guessComparison(x, rndNum) {
-	if (x = rndNum) {
-		document.getElementById("emailHelp").innerHTML = "You guessed the correct number: " + rndNum;
-	} else (x > rndNum) {
-		document.getElementById("emailHelp").innerHTML = "Your guess is too high";
-	} else if (x < rndNum) {
-		document.getElementById("emailHelp").innerHTML = "Your guess is too low";
+	let userNum = x;
+
+	if (userNum == rndNum) {
+		return document.getElementById("feedback").innerHTML = "You guessed the correct number: " + rndNum;
+	} else if (userNum > rndNum) {
+		return document.getElementById("feedback").innerHTML = "Your guess is too high";
+	} else if (userNum < rndNum) {
+		return document.getElementById("feedback").innerHTML = "Your guess is too low";
 	}
 }
 
