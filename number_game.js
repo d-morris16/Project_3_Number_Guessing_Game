@@ -17,41 +17,43 @@ Step 6: Create a function that will loop for 3 iterations indicating the current
 
 
 let rndNum = getRndNumber(1,101);
-let x = document.getElementById("numericInput").value;
+let numOfClicks = 0;
 
 function getRndNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-document.getElementById("computerNum").innerHTML = rndNum;
-document.getElementById("submit").addEventListener("click", function(event){
+document.getElementById("submit").addEventListener("submit", function(event){
 		event.preventDefault()
 	});
 
-function guessComparison(x, rndNum) {
-	let userNum = x;
-
-	if (userNum == rndNum) {
+function guessComparison() {
+	console.log(rndNum);
+	let x = document.getElementById("numericInput").value;
+	if (x == rndNum) {
 		return document.getElementById("feedback").innerHTML = "You guessed the correct number: " + rndNum;
-	} else if (userNum > rndNum) {
+	} else if (x > rndNum) {
 		return document.getElementById("feedback").innerHTML = "Your guess is too high";
-	} else if (userNum < rndNum) {
+	} else if (x < rndNum) {
 		return document.getElementById("feedback").innerHTML = "Your guess is too low";
 	}
 }
 
 
-// function numOfGuesses (numOfClicks) {
-//   let gameState = "";
+function numOfGuesses () {
+  let gameState = "";
+  let state = numOfClicks;
   
-//   for (i = 0; i < numOfClicks; i++) {
-//     if (i === 0) {
-//        gameState = "2 more guesses";
-//     } else if (i == 1) {
-//       gameState = "1 more guess";
-//     } else if (i == 2) {
-//       gameState = "Game Over";
-//     }
-//   }
-//   return gameState;
-// }
+  if (state === 0) {
+  gameState = "2 more guesses";
+  document.getElementById("gameStatus").innerHTML = gameState;
+  return numOfClicks = 1;
+  } else if (state == 1) {
+  gameState = "1 more guess";
+  document.getElementById("gameStatus").innerHTML = gameState;
+  return numOfClicks = 2;
+  } else if (state == 2) {
+  gameState = "Game Over! The number was: " + rndNum;
+  document.getElementById("gameStatus").innerHTML = gameState;
+}
+}
