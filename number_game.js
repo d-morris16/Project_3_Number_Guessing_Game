@@ -53,7 +53,21 @@ function numOfGuesses () {
   document.getElementById("gameStatus").innerHTML = gameState;
   return numOfClicks = 2;
   } else if (state == 2) {
-  gameState = "Game Over! The number was: " + rndNum;
+  gameState = "Game Over! The number was: " + rndNum + "   Press New Game to start over";
   document.getElementById("gameStatus").innerHTML = gameState;
+  return numOfClicks = 0;
 }
+}
+
+function newGame() {
+	let blankGameState = "";
+	let blankFeedback = "";
+	document.getElementById("gameStatus").innerHTML = blankGameState;
+	document.getElementById("feedback").innerHTML = blankFeedback;
+
+	function getRndNumber(min, max) {
+		return Math.floor(Math.random() * (max - min)) + min;
+		console.log("Does this call?")
+	}
+	return rndNum = getRndNumber(1, 101);
 }
