@@ -8,10 +8,10 @@
 /*
 Step 0: Create a variable that will hold the return value of the rndNum function. 
 Step 1: Create a function (rndNum) that will return a random number from 1-100.
-Step 2: DOM manipulate an HTML element to display the return value of the function (rndNum). 
-Step 4: Create an if else statement that will check if the user's  guess matches the rndNum function.
-Step 5: Create a variable that will hold the value of times the user has clicked the submit button.
-Step 6: Create a function that will loop for 3 iterations indicating the current gamestate to the user.
+Step 2: Console.log the rndNum. 
+Step 4: Create an if/else if statement that will check if the user's guess matches the rndNum function.
+Step 5: Define a function that will change the state of the game (number of guesses) with each submit event. 
+Step 6: Create a conditional statement for when the user guesses the correct number. 
 
 */
 
@@ -23,51 +23,49 @@ function getRndNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-document.getElementById("submit").addEventListener("submit", function(event){
+let manyEvents = document.getElementById("submit");
+
+manyEvents.addEventListener("submit", function(event) {
 		event.preventDefault()
 	});
+manyEvents.addEventListener("submit",guessComparison);
+manyEvents.addEventListener("submit",numOfGuesses);
 
 function guessComparison() {
-	console.log(rndNum);
 	let x = document.getElementById("numericInput").value;
+	console.log(rndNum);
 	if (x == rndNum) {
-		return document.getElementById("feedback").innerHTML = "You guessed the correct number: " + rndNum;
+		document.getElementById("feedback").innerHTML = "You guessed the correct number: " + rndNum;
+		numOfGuesses(10 > 9);
 	} else if (x > rndNum) {
-		return document.getElementById("feedback").innerHTML = "Your guess is too high";
+		document.getElementById("feedback").innerHTML = "Your guess is too high";
 	} else if (x < rndNum) {
-		return document.getElementById("feedback").innerHTML = "Your guess is too low";
+		document.getElementById("feedback").innerHTML = "Your guess is too low";
 	}
 }
 
 
-function numOfGuesses () {
-  let gameState = "";
+function numOfGuesses (num1, num2) {
   let state = numOfClicks;
   
-  if (state === 0) {
-  gameState = "2 more guesses";
-  document.getElementById("gameStatus").innerHTML = gameState;
-  return numOfClicks = 1;
+  if (num1 > num2) {
+  document.getElementById("gameStatus").innerHTML ="You win! Press New Game";
+  }else if (state === 0) {
+  document.getElementById("gameStatus").innerHTML = "2 more guesses";
+  numOfClicks = 1;
   } else if (state == 1) {
-  gameState = "1 more guess";
-  document.getElementById("gameStatus").innerHTML = gameState;
-  return numOfClicks = 2;
+  document.getElementById("gameStatus").innerHTML = "1 more guess";
+  numOfClicks = 2;
   } else if (state == 2) {
-  gameState = "Game Over! The number was: " + rndNum + "   Press New Game to start over";
-  document.getElementById("gameStatus").innerHTML = gameState;
-  return numOfClicks = 0;
+  document.getElementById("gameStatus").innerHTML = "Game Over! The number was: " + rndNum + "   Press New Game to start over";
+  numOfClicks = 0;
 }
 }
 
 function newGame() {
-	let blankGameState = "";
-	let blankFeedback = "";
-	document.getElementById("gameStatus").innerHTML = blankGameState;
-	document.getElementById("feedback").innerHTML = blankFeedback;
-
-	function getRndNumber(min, max) {
-		return Math.floor(Math.random() * (max - min)) + min;
-		console.log("Does this call?")
-	}
-	return rndNum = getRndNumber(1, 101);
+	document.getElementById("gameStatus").innerHTML = "";
+	document.getElementById("feedback").innerHTML = "";
+	document.getElementById("submit").reset();
+	rndNum = getRndNumber(1, 101);
+	numOfClicks = 0;
 }
