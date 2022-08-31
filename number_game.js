@@ -33,15 +33,16 @@ manyEvents.addEventListener("submit", function(event) {
 function guessComparison() {
 	let x = document.getElementById("numericInput").value;
 	console.log(rndNum);
-	numOfGuesses()
 
 	if (x == rndNum) {
 		document.getElementById("feedback").innerHTML = "You guessed the correct number: " + rndNum;
-		numOfGuesses(10 > 9);
+		numOfGuesses(true);
 	} else if (x > rndNum) {
 		document.getElementById("feedback").innerHTML = "Your guess is too high";
+		numOfGuesses(false);
 	} else if (x < rndNum) {
 		document.getElementById("feedback").innerHTML = "Your guess is too low";
+		numOfGuesses(false);
 	}
 }
 
@@ -51,14 +52,14 @@ function numOfGuesses (boolean) {
   if (boolean === true) {
   	document.getElementById("gameStatus").innerHTML = "You win! Press New Game";
   } else if (numOfClicks === 0) {
-  document.getElementById("gameStatus").innerHTML = "2 more guesses";
-  numOfClicks = 1;
+	  document.getElementById("gameStatus").innerHTML = "2 more guesses";
+	  numOfClicks = 1;
   } else if (numOfClicks === 1) {
-  document.getElementById("gameStatus").innerHTML = "1 more guess";
-  numOfClicks = 2;
+	  document.getElementById("gameStatus").innerHTML = "1 more guess";
+	  numOfClicks = 2;
   } else if (numOfClicks === 2) {
-  document.getElementById("gameStatus").innerHTML = "Game Over! The number was: " + rndNum + "   Press New Game to start over";
-  numOfClicks = 0;
+	  document.getElementById("gameStatus").innerHTML = "Game Over! The number was: " + rndNum + "   Press New Game to start over";
+	  numOfClicks = 0;
 } 
 }
 
